@@ -144,7 +144,11 @@ function matchNewSyntax(matcher, v) {
     case Matcher.EQ:
       return matcher.value === v;
     case Matcher.NE:
-      return matcher.value !== v;
+      let nmatcher = "";
+      nmatcher = matcher.value.substring(1)
+      console.log(nmatcher)
+      console.log(v)
+      return  nmatcher !== v;
     case Matcher.RE:
     case Matcher.NRE:
       return matcher.value.test(v);
@@ -211,7 +215,7 @@ function massage(root, receivers) {
             break;
           case "!=":
             o.op = Matcher.NE
-            o.value = value;
+            o.value = "!" + value;
             matchers.push(o);
             break;
           case "!~":
